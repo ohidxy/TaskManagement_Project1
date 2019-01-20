@@ -12,3 +12,4 @@
 */
 
 Route::resource('/projects', 'ProjectController');
+Route::resource('/projects/{project}/tasks', 'TaskController');

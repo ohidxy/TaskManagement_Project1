@@ -9,7 +9,7 @@
             @foreach ($projects as $project)
                 <div class="card">
                     <div class="card-header bg-info">
-                        {{ $project->title }}
+                        <a class="text-light" href="/projects/{{ $project->id }}/tasks"><b>{{ $project->title }}</b></a>
                     </div>
                     <div class="card-body">
                         {{ $project->description }}
