@@ -27,4 +27,23 @@ class ProjectController extends Controller
         );
         return redirect('/projects');
     }
+
+    public function edit(Project $project){
+        return view('projects.edit', compact('project'));
+    }
+
+    public function update(Project $project){
+        $project->update(
+            $validated_data = request()->validate([
+                'title' => ['required'],
+                'description' => ['required']
+            ])
+        );
+        return redirect('/projects');
+    }
+
+    public function destroy(Project $project){
+        $project->delete();
+        return redirect('/projects');
+    }
 }
