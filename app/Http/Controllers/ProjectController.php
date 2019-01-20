@@ -13,4 +13,18 @@ class ProjectController extends Controller
             'projects' => Project::all()
         ]);
     }
+
+    public function create(){
+        return view('projects.create');
+    }
+
+    public function store(){
+        Project::create(
+            $validated_data = request()->validate([
+                'title' => ['required'],
+                'description' => ['required']
+            ])
+        );
+        return redirect('/projects');
+    }
 }

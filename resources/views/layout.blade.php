@@ -10,7 +10,6 @@
 <body>
     @include('navigation')
 
-    @section('content')    
-    @endsection
+    @yield('content')
 </body>
 </html>
