@@ -17,15 +17,12 @@ class TaskController extends Controller
         ]);
     }
 
-    public function store(Project $project){
-        Task::create(
-            $validated_data = request()->validate([
-                'project_id' => ['required'],
-                'title' => ['required', 'min:5', 'max:255'],
-                'description' => ['required', 'min:5', 'max:255']
-            ])
-        );
-
+    public function store(Project $project, Task $task){
+        $validated_date = request()->validate([
+            'title' => ['required', 'min:5', 'max:255'],
+            'description' => ['required', 'min:5', 'max:255']
+        ]);
+        $project -> addTask($validated_date);
         return back();
     }
 
