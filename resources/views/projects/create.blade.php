@@ -4,7 +4,7 @@
 <div class="container mt-3">
     <h2>Create a Project</h2>
     {{-- Create Form --}}
-    <form method="POST" action="/projects">
+    <form method="POST" action="{{ route('projects.index') }}">  {{-- /projects --}}
         @csrf
         <input class="form-control mb-1" type="text" name="title" placeholder="Title" required>
         <input class="form-control mb-1" type="text" name="description" placeholder="Description" required>

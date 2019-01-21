@@ -4,7 +4,7 @@
 <div class="container mt-3">
     <h2>Edit Project - {{ $project->title }}</h2>
     {{-- Edit Form --}}
-    <form method="POST" action="/projects/{{ $project->id }}">
+    <form method="POST" action="{{ route('projects.update', ['project' => $project->id ]) }}">   {{-- /projects/{{ $project->id }} --}}
         @csrf
         @method('PATCH')
         <input class="form-control mb-1" type="text" name="title" placeholder="Title" value="{{ $project->title }}" required>

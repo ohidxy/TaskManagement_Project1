@@ -15,7 +15,7 @@
 
     <div class="mt-3">
         <h2>Create Task</h2>
-        <form method="POST" action="/projects/{{ $project->id }}/tasks">
+        <form method="POST" action="{{ route('tasks.store', ['project' => $project->id]) }}">
             @csrf
             <input type="hidden" name="project_id" value="{{ $project->id }}">
             <input class="form-control mb-1" type="text" name="title" placeholder="Task title" required>
@@ -41,7 +41,7 @@
                 @foreach ($tasks as $task)
                     <tr class="{{ $task->completed ? 'completed': '' }}">
                         <td scope="row">
-                            <form method="POST" action="/projects/{{ $project->id }}/tasks/{{ $task->id }}">
+                            <form method="POST" action="{{ route('tasks.update', ['project'=>$project->id, 'task'=> $task->id]) }}">    {{-- action="/projects/{{ $project->id }}/tasks/{{ $task->id }}" --}}
                                 @csrf
                                 @method('PATCH')
                                 <input type="checkbox" name="completed" onChange="this.form.submit()" {{ $task->completed ? 'checked' : ''}}>
@@ -50,7 +50,7 @@
                         </td>
                         <td>{{ $task->description }}</td>
                         <td>
-                            <form class="m-0" method="POST" action="/projects/{{ $project->id }}/tasks/{{ $task->id }}">
+                            <form class="m-0" method="POST" action="{{ route('tasks.update', ['project'=>$project->id, 'task'=> $task->id]) }}">  {{-- action="/projects/{{ $project->id }}/tasks/{{ $task->id }}" --}}
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm" type="submit">Delete</button>
