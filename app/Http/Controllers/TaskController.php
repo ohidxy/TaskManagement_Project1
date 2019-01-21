@@ -10,6 +10,11 @@ use App\Task;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Project $project){
         return view('tasks.index', [
             'project' => $project,

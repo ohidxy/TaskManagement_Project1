@@ -1,5 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h2>Welcome to home route!!</h2>
+<div class="container">
+    <h2>Welcome to home Task Manager!!</h2>
+</div>
 @endsection
