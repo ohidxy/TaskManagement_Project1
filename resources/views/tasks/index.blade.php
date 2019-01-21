@@ -31,8 +31,7 @@
     <table class="table table-striped mt-3">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">Task Title</th>
+            <th scope="col">Task</th>
             <th scope="col">Description</th>
             <th scope="col">Action</th>
             </tr>
@@ -40,13 +39,15 @@
         <tbody>
             @if (!$tasks->isEmpty())
                 @foreach ($tasks as $task)
-                    <tr>
-                        <th scope="row">
-                            <form action="">
-                                <input type="checkbox" name="">
+                    <tr class="{{ $task->completed ? 'completed': '' }}">
+                        <td scope="row">
+                            <form method="POST" action="/projects/{{ $project->id }}/tasks/{{ $task->id }}">
+                                @csrf
+                                @method('PATCH')
+                                <input type="checkbox" name="completed" onChange="this.form.submit()" {{ $task->completed ? 'checked' : ''}}>
+                                {{ $task->title }}
                             </form>
-                        </th>
-                        <td>{{ $task->title }}</td>
+                        </td>
                         <td>{{ $task->description }}</td>
                         <td>
                             <form class="m-0" method="POST" action="/projects/{{ $project->id }}/tasks/{{ $task->id }}">
@@ -59,7 +60,7 @@
                 @endforeach
             @else
                 <tr>
-                    <td colspan="4">No Task available.</td>
+                    <td colspan="3">No Task available.</td>
                 </tr>
             @endif
             

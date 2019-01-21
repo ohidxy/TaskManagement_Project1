@@ -6,6 +6,12 @@
     <title>@yield('title', 'Task Management')</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css">
+
+    <style>
+        .completed{
+            text-decoration:line-through;
+        }
+    </style>
 </head>
 <body>
     @include('navigation')

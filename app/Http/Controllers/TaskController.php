@@ -33,15 +33,12 @@ class TaskController extends Controller
     //     return view('projects.edit', compact('project'));
     // }
 
-    // public function update(Project $project){
-    //     $project->update(
-    //         $validated_data = request()->validate([
-    //             'title' => ['required'],
-    //             'description' => ['required']
-    //         ])
-    //     );
-    //     return redirect('/projects');
-    // }
+    public function update(Project $project, Task $task){
+        $task->update([
+            'completed' => request()->has('completed')
+        ]);
+        return back();
+    }
 
     public function destroy(Project $project, Task $task){
         $task->delete();
