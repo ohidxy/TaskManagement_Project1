@@ -16,7 +16,7 @@ class ProjectController extends Controller
 
     public function index(){
         return view('projects.index', [
-            'projects' => Project::all()
+            'projects' => Project::where('owner_id', auth()->id())->get()
         ]);
     }
 
@@ -25,12 +25,15 @@ class ProjectController extends Controller
     }
 
     public function store(){
-        Project::create(
-            $validated_data = request()->validate([
-                'title' => ['required'],
-                'description' => ['required']
-            ])
-        );
+        $validated_data = request()->validate([
+            'title' => ['required'],
+            'description' => ['required']
+        ]);
+
+        $validated_data['owner_id'] = auth()->id();
+
+        Project::create($validated_data);
+        
         return redirect('/projects');
     }
 
